@@ -1,0 +1,44 @@
+.dashboard{
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+.dashboard-box{
+    background-color: Grey;
+    margin: 20px;
+    border-radius: 10px;
+    flex-grow: 1;
+}
+
+.box-content{   
+    margin: 0.5em;
+    width: 15em;
+    display:flex;
+}
+
+.box-icon{
+    margin: 10px 0px 10px 10px;
+    height:60px;
+    width:60px;
+    background-color: rgb(87, 4, 87);
+    border-radius: 10px;
+}
+
+.box-data{
+    margin-top: 3px;
+}
+
+.box-text{
+    margin: 5px 0px 0px 20px;
+}
+
+h3{
+    font-size: 20px;
+}
+
+i{
+    font-size: 30px;
+    color:white;
+    margin: 15px 0px 0px 11px;
+}
