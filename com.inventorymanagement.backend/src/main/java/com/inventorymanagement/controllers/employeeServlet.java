@@ -29,12 +29,16 @@ public class employeeServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("Controller Hit!");
 		try {
 			int id = _urlParser.extractIdFromUrl(req.getPathInfo());
 			Employee employee = _data.findById(id);
 			resp.setContentType("application/json");
 			resp.getWriter().print(_mapper.writeValueAsString(employee));
 			resp.setStatus(200);
+			resp.addHeader("Access-Control-Allow-Origin", "*");
+			resp.addHeader("Access-Control-Allow-Methods", "*");
+			resp.addHeader("Access-Control-Allow-Headers", "*");
 		}
 		catch(Exception e) {
 			List<Employee> employees = _data.findAll();
