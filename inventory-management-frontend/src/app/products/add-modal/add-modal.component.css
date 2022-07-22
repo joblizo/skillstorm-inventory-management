@@ -1,0 +1,39 @@
+body{
+    background-color: white;
+}
+
+
+.product-details{
+    display: flex;
+}
+
+.dropdown{
+    display:flex;
+    flex-direction: column;
+    flex-grow: 2;
+}
+
+.btn{
+    background-color: white;
+    color:black
+}
+
+table {
+    width: 100%;
+    max-height: 100vh;
+    overflow: auto;
+    background-color: rgb(245, 247, 251);
+}
+
+.input-group-append{
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+/* 
+[(ngModel)]="newProduct.stock"
+[(ngModel)]="newProduct.price"
+[(ngModel)]="newProduct.name"
+*/

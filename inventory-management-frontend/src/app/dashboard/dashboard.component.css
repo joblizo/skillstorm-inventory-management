@@ -1,11 +1,13 @@
+body{
+    background-color: lightgrey;
+}
 .dashboard{
     display: flex;
     flex-wrap: wrap;
-    
 }
 
 .dashboard-box{
-    background-color: Grey;
+    background-color: white;
     margin: 20px;
     border-radius: 10px;
     flex-grow: 1;
@@ -42,3 +44,22 @@ i{
     color:white;
     margin: 15px 0px 0px 11px;
 }
+
+.chart-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.chart-content{
+    flex-grow: 1;
+    background-color: #ffff;
+    margin: 0 20px 20px 20px;
+    padding: 25px;
+    box-sizing: border-box;
+    -webkit-column-break-inside: avoid;
+    border-radius: 10px;
+    border: 1px sold #d2d2d3;
+    background-color: white;
+    box-shadow: 0 6px 7px -4px rgba(0,0,0,0.2);
+}
+

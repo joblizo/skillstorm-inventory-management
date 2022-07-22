@@ -17,6 +17,8 @@ export class NavbarComponent implements OnInit {
   constructor(public employeeService:EmployeeService, public warehouseService:WarehouseService) { 
     this.getEmployee();
     this.getWarehouse();
+
+    
   }
 
   ngOnInit(): void {
@@ -27,6 +29,7 @@ export class NavbarComponent implements OnInit {
     return this.employeeService
     .get()
     .subscribe((employee: Employee) => {
+      console.log(employee);
       this.employee = employee;
     });
   }

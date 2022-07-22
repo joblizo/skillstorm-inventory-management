@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="modal-header">
+        <h4 class="modal-title">Delete Product Info</h4>
+        <button type="button" class="btn-close" aria-label="Close"
+            (click)="activeModal.dismiss('Cross click')"></button>
+    </div>
+
+    <div class="warning">Are you sure you want to delete this?</div>
+    
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark"(click)="passBack()" >Yes</button>
+        <button type="button" class="btn btn-outline-dark"(click)="activeModal.dismiss('Cross click')" >No</button> 
+    </div>
+    
+</body>
+</html>
+
+

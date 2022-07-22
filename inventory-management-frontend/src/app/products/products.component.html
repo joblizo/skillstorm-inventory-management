@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+</head>
+
+<body>
+    <div class="product-header">
+        <div class="product-header-text">
+            <h2>Products {{products.length}}</h2>
+        </div>
+        <div class="spacer"></div>
+        <button type="button" ngbAutofocus class="btn btn-primary btn-sm"
+        (click)="openAdd()">Add Product</button>
+        <button type="button" ngbAutofocus class="btn btn-primary btn-sm"
+        (click)="openDelete(false)">Delete Product</button>
+        
+    </div>
+    <div class="product">
+        <div class="product-table">
+            <input type="text" [(ngModel)]="searchString" placeholder=" Search by Name" />
+            <div class="product-content">
+                <table>
+                    <tr *ngFor="let product of products | searchName: searchString; 
+                    let i = index"
+                    (click)="setProduct(i)"
+                    [class.active]="i == HighlightRow">
+                        <td class="product-container">
+                            <div class="product-container-top">
+                                <div class="item-name">{{ product.name }}</div>
+                                <div class="item-description">{{ product.description }}</div>
+                            </div>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="product-details">
+            <div class="product-details-box">
+                <div class="product-details-header">
+                    <h2>Product Info</h2>
+                    <button type="button" ngbAutofocus class="btn btn-primary btn-sm"
+                    (click)="openAddStock()">Add</button>
+                    <button type="button" ngbAutofocus class="btn btn-primary btn-sm"
+                    (click)="openEdit()">Edit</button>
+                    <button type="button" ngbAutofocus class="btn btn-primary btn-sm"
+                    (click)="openDelete(true)">Delete</button>
+                </div>
+                <div class="product-details-main">
+                    <div class="title">
+                        <div class="title-column">
+                            <div>Product</div>
+                            {{currentProduct.name}}
+                        </div>
+                        <i class="fa-solid fa-box-open"></i>
+                    </div>
+                    <div class="supplier">
+                        <div class="supplier-column">
+                            <div>Supplier</div>
+                            {{currentSupplier}}
+                        </div>
+                        <i class="fa-solid fa-briefcase"></i>
+
+                    </div>
+                    <div class="category">
+                        <div class="category-column">
+                            <div>Category</div>
+                            {{currentCategory}}
+                        </div>
+                        <i class="fa-solid fa-clipboard-question"></i>
+
+                    </div>
+                    <div class="stock">
+                        <div class="stock-column">
+                            <div>Stock</div>
+                            {{currentTotalStock}}
+                        </div>
+                        <i class="fa-solid fa-hashtag"></i>
+                    </div>
+                </div>
+                <div class="product-details-table">
+                    <table >
+                        <thead>
+                            <tr>
+                                <th scope="col">Warehouse</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Stock</th>
+                                <th scope="col">Total Price</th>
+                            </tr>
+                        </thead>
+                        <tr class="product-row-content" 
+                        *ngFor="let productDetails of productDetails; 
+                        let j = index" (click)="setWarehouse(j,productDetails.location)" 
+                        [class.active]="j == HighlightProductRow">
+                            <td class="warehouse">{{ productDetails.location }}</td>
+                            <td class="price">{{productDetails.price}}</td> <!-- get index form selection  -->
+                            <td class="stock">{{productDetails.stock}}</td>
+                            <td class="totalprice">{{productDetails.totalPrice}}</td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

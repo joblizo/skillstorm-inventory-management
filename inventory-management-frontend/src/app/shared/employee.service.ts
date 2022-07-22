@@ -13,6 +13,6 @@ export class EmployeeService extends DataService<Employee>{
   }
 
   getResourceUrl(): string {
-    return "employees";
+    return "employee/1";
   }
 }

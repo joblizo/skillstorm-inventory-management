@@ -11,40 +11,43 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.inventorymanagement.daos.EmployeeDao;
-import com.inventorymanagement.daos.IEmployeeDAO;
-import com.inventorymanagement.models.Employee;
+import com.inventorymanagement.daos.IWarehouseDao;
+import com.inventorymanagement.daos.WarehouseDao;
+import com.inventorymanagement.models.Warehouse;
+import com.inventorymanagement.services.AddAccessService;
 import com.inventorymanagement.services.URLParserService;
 
-@WebServlet(urlPatterns = "/employee/*")
-public class employeeServlet extends HttpServlet{
-	IEmployeeDAO _data = new EmployeeDao();
+
+@WebServlet(urlPatterns = "/warehouse/*")
+public class WarehouseServlet extends HttpServlet{
+	IWarehouseDao _data = new WarehouseDao();
 	ObjectMapper _mapper = new ObjectMapper();
 	URLParserService _urlParser = new URLParserService();
+	AddAccessService _cors = new AddAccessService();
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1058403466339293220L;
+	private static final long serialVersionUID = 6514648235914190314L;
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("Controller Hit!");
 		try {
 			int id = _urlParser.extractIdFromUrl(req.getPathInfo());
-			Employee employee = _data.findById(id);
+			Warehouse warehouse = _data.findById(id);
 			resp.setContentType("application/json");
-			resp.getWriter().print(_mapper.writeValueAsString(employee));
+			resp.getWriter().print(_mapper.writeValueAsString(warehouse));
 			resp.setStatus(200);
-			resp.addHeader("Access-Control-Allow-Origin", "*");
-			resp.addHeader("Access-Control-Allow-Methods", "*");
-			resp.addHeader("Access-Control-Allow-Headers", "*");
+			
+			
 		}
 		catch(Exception e) {
-			List<Employee> employees = _data.findAll();
+			List<Warehouse> warehouses = _data.findAll();
 			resp.setContentType("application/json");
-			resp.getWriter().print(_mapper.writeValueAsString(employees));
+			resp.getWriter().print(_mapper.writeValueAsString(warehouses));
 			resp.setStatus(200);
+			
 		}
 	}
 	
@@ -53,11 +56,11 @@ public class employeeServlet extends HttpServlet{
 		// TODO Auto-generated method stub
 		System.out.println(req);
 		InputStream reqBody = req.getInputStream();
-		Employee employee = _mapper.readValue(reqBody, Employee.class);
+		Warehouse warehouse = _mapper.readValue(reqBody, Warehouse.class);
 		
-		_data.create(employee);
+		_data.create(warehouse);
 		resp.setContentType("application/json");
-		resp.getWriter().print("Inserted into DB: " + _mapper.writeValueAsString(employee));
+		resp.getWriter().print("Inserted into DB: " + _mapper.writeValueAsString(warehouse));
 		resp.setStatus(200);
 		
 		
@@ -67,12 +70,13 @@ public class employeeServlet extends HttpServlet{
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		InputStream reqBody = req.getInputStream();
-		Employee employee = _mapper.readValue(reqBody, Employee.class);
+		Warehouse warehouse = _mapper.readValue(reqBody, Warehouse.class);
 		
-		_data.update(employee);
+		_data.update(warehouse);
 		resp.setContentType("application/json");
-		resp.getWriter().print("Updated" + _mapper.writeValueAsString(employee));
+		resp.getWriter().print("Updated" + _mapper.writeValueAsString(warehouse));
 		resp.setStatus(200);
+		
 	}
 	
 	@Override
@@ -84,23 +88,25 @@ public class employeeServlet extends HttpServlet{
 				resp.setContentType("application/json");
 				resp.getWriter().print(String.format("ID: %s deleted", id));
 				resp.setStatus(200);
+				
 			}
 			else {
 				resp.setContentType("application/json");
 				resp.getWriter().print(String.format("ID: %s wasn't deleted", id));
 				resp.setStatus(400);
+				
 			}
 			
 		}
 		catch(Exception e) {
 			InputStream reqBody = req.getInputStream();
-			Employee employee = _mapper.readValue(reqBody, Employee.class);
-			_data.delete(employee);
+			Warehouse warehouse = _mapper.readValue(reqBody, Warehouse.class);
+			_data.delete(warehouse);
 			
 			resp.setContentType("application/json");
-			resp.getWriter().print(_mapper.writeValueAsString(employee));
+			resp.getWriter().print(_mapper.writeValueAsString(warehouse));
 			resp.setStatus(200);
+			
 		}
 	}
-
 }

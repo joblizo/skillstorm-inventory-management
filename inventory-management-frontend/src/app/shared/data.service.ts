@@ -35,21 +35,22 @@ export abstract class DataService<T> {
   
   
   post(resource: T): Observable<any> {
-    return this.httpClient.post(`/${this.APIUrl}}`, resource)
+    
+    return this.httpClient.post(`${this.APIUrl}`, resource)
       .pipe(
         catchError(this.handleError)
       );
   }
 
   delete(id: string | number): Observable<any> {
-    return this.httpClient.delete(`/${this.APIUrl}}/${id}`) 
+    return this.httpClient.delete(`${this.APIUrl}${id}`) 
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  put(resource: T) {
-    return this.httpClient.put(`/${this.APIUrl}}`,resource)
+  put(resource: T): Observable<any> {
+    return this.httpClient.put(`${this.APIUrl}`,resource)
       .pipe(
         catchError(this.handleError)
       );

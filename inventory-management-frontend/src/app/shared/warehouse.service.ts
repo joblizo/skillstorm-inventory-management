@@ -13,6 +13,6 @@ export class WarehouseService extends DataService<Warehouse> {
   }
 
   getResourceUrl(): string {
-    return "warehouse";
+    return "warehouse/1";
   }
 }

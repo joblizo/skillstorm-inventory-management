@@ -13,18 +13,6 @@ public class Employee {
 		
 	}
 	
-	public Employee(int id, String firstName, String lastName, String address, String phone, String email,
-			int warehouse_id) {
-		super();
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.address = address;
-		this.phone = phone;
-		this.email = email;
-		this.warehouse_id = warehouse_id;
-	}
-	
 	public Employee(String firstName, String lastName, String address, String phone, String email) {
 		super();
 		this.firstName = firstName;
@@ -32,7 +20,15 @@ public class Employee {
 		this.address = address;
 		this.phone = phone;
 		this.email = email;
-		}
+	}
+	
+	public Employee(int id, String firstName, String lastName, String address, String phone, String email,
+			int warehouse_id) {
+		this(firstName, lastName, address, phone, email);
+		this.id = id;
+		this.warehouse_id = warehouse_id;
+	}
+	
 
 	public int getId() {
 		return id;
